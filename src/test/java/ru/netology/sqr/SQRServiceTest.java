@@ -8,16 +8,15 @@ import static org.junit.jupiter.api.Assertions.*;
 class SQRServiceTest {
 
     @ParameterizedTest
-    @CsvSource(value = {"'TotalSquare', 200, 400, 6",
-            "'TotalSquare', 398, 399,0"})
-    void shouldCalculate(String testName, int underValue, int upperValue, int expected) {
-        SQRService service = new SQRService();
+    @CsvSource(value = {"'SQR=10-17', 200, 300, 3, 10, 17",
+                        "'SQR=20-30', 900, 900, 1, 20, 30"})
+    void floor(String testName, int underValue, int upperValue, int expected, int startSqr, int stopSqr) {
 
-        // вызываем целевой метод:
-        long actual = service.calculate(upperValue, underValue);
+        FloorService floorService = new FloorService();
 
-        // производим проверку (сравниваем ожидаемый и фактический):
+        int actual = floorService.cntrl(underValue, upperValue, startSqr, stopSqr);
         assertEquals(expected, actual);
+        System.out.println(testName + actual);
     }
 
 }
